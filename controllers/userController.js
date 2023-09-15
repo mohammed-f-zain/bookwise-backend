@@ -13,6 +13,13 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "Invalid email format" });
     }
 
+    // Check if the email is already registered
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "Email is already registered" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
@@ -31,6 +38,7 @@ export const register = async (req, res) => {
   }
 };
 
+
 // Login a user
 export const login = async (req, res) => {
   try {
@@ -45,7 +53,7 @@ export const login = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid password" });
+      return res.status(401).json({ message: "Invalid Email or Password" });
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
