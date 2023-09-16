@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js"
 import booksRoutes from "./routes/booksRoutes.js"
 import adminRoutes from "./routes/adminRoutes.js"
+import authorRoutes from "./routes/authorRoutes.js"
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/user", userRoutes);
 app.use("/books", booksRoutes);
 app.use("/admin", adminRoutes);
+app.use("/author", authorRoutes);
 
 const port = process.env.PORT;
 const url = process.env.URL;

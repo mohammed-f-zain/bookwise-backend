@@ -38,7 +38,6 @@ export const register = async (req, res) => {
   }
 };
 
-
 // Login a user
 export const login = async (req, res) => {
   try {
@@ -271,7 +270,6 @@ export const addToReadingWishlist = async (req, res) => {
   }
 };
 
-
 // Add a comment to a book
 export const addCommentToBook = async (req, res) => {
   try {
@@ -346,4 +344,3 @@ export const addUserRatingToBook = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
