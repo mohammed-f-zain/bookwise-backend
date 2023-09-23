@@ -9,7 +9,8 @@ import {
   deleteUserAccount,
   getUserProfile,
   updateUserProfile,
-  addUserRatingToBook
+  addUserRatingToBook,
+  getAllUsers
 } from "../controllers/userController.js";
 import {authMiddleware} from "../middleware/authMiddleware.js";
 import { adminAuthMiddleware } from "../middleware/adminAuthMiddleware.js";
@@ -44,5 +45,6 @@ router.post("/wishlist/reading/:bookId",authMiddleware, addToReadingWishlist);
 router.post("/comment/:bookId",authMiddleware, addCommentToBook);
 // Add a user rating to a book (protected route)
 router.post("/rate/:id", authMiddleware, addUserRatingToBook);
-
+//get all users
+router.get("/all", adminAuthMiddleware,getAllUsers)
 export default router;
